@@ -7,11 +7,11 @@ df = pd.read_csv ('../Data/strong.csv')
 # User list comprehension to create a list of lists from Dataframe rows
 list_of_rows = [list(row) for row in df.values]
 # Print list of lists i.e. rows
-FrontSquat = np.array([i[:-5] for i in list_of_rows if i[3]=='Snatch (Barbell)'])
+Snatch = np.array([i[:-5] for i in list_of_rows if i[3]=='Snatch (Barbell)'])
 #print([i[:-5] for i in list_of_rows if i[3]=='Front Squat (Barbell)'])
 
-x = [i[0] for i in FrontSquat]
-y = [float(i[-2]) for i in FrontSquat]
+x = [i[0] for i in Snatch]
+y = [float(i[-2]) for i in Snatch]
 plt.plot(y)
 plt.grid()
 plt.ylabel('some numbers')
