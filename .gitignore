@@ -1,0 +1,7 @@
+# Mac Specific
+**/.DS_Store
+**/*.o
+/venv
+**/__pycache__
+/.vscode
+**/*.pyc
