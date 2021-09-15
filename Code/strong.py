@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import datetime as dt
+from simple_term_menu import TerminalMenu
 
 df = pd.read_csv ('../Data/strong.csv')
 #Num:    0        1              2           3              4           5        6        7        8        9        10             11
@@ -22,19 +23,7 @@ for workout in list_of_rows:
    list_of_dict.append(workout_dict)
 #print(list_of_dict)
 all_workouts = list_of_dict
-
-"""
-# Print list of lists i.e. rows
-Snatch = np.array([i[:-5] for i in list_of_rows if i[3]=='Snatch (Barbell)'])
-#print([i[:-5] for i in list_of_rows if i[3]=='Front Squat (Barbell)'])
-
-x = [i[0] for i in Snatch]
-y = [float(i[-2]) for i in Snatch]
-plt.plot(y)
-plt.grid()
-plt.ylabel('some numbers')
-plt.show()
-"""
+all_exercise_names = list(set([i["Exercise Name"] for i in all_workouts]))
 # 1RM
 def OneRepMax(weight,reps):
    percentage = (100-(reps*2.5))/100
@@ -65,6 +54,7 @@ def total_volume(with_plot = True):
       rvb = mcolors.LinearSegmentedColormap.from_list("", clist)
       color=rvb(np.array(y_axis)/max(y_axis))
       plt.style.use('dark_background')
+      plt.rcParams["figure.figsize"] = (12,7)
       plt.bar(x_axis,y_axis,width = 0.9, color=color)
       plt.scatter(x_axis,y_axis, color=color)
       plt.title("Total volume per Workout")
@@ -78,7 +68,7 @@ def total_volume(with_plot = True):
       plt.clf()
    return volume_of_every_workout
 
-#total_volume()
+
 
 
 # Best set over time per given exercise
@@ -104,6 +94,7 @@ def best_set(exercise_name = "Snatch (Barbell)", with_plot = True):
          x_axis.append( dt.datetime.fromisoformat( i["Date"] ))
          y_axis.append( i["1RM"] )
       plt.style.use('dark_background')
+      plt.rcParams["figure.figsize"] = (12,7)
       plt.plot(x_axis,y_axis, color="red", linewidth = 2,
             marker='.', markerfacecolor='blue', markersize=10)
       plt.title("Best set of {} per Workout".format(exercise_name))
@@ -116,7 +107,7 @@ def best_set(exercise_name = "Snatch (Barbell)", with_plot = True):
       plt.cla()
       plt.clf()
    return best_sets
-#best_set()
+
 
 
 # Total volume over time per given exercise
@@ -141,6 +132,7 @@ def total_volume_per_exercise(exercise_name = "Snatch (Barbell)", with_plot = Tr
          x_axis.append( dt.datetime.fromisoformat( i["Date"] ))
          y_axis.append( i["Volume"] )
       plt.style.use('dark_background')
+      plt.rcParams["figure.figsize"] = (12,7)
       plt.plot(x_axis,y_axis, color="red", linewidth = 2,
             marker='.', markerfacecolor='blue', markersize=10)
       plt.title("Volume of {} per Workout".format(exercise_name))
@@ -153,12 +145,115 @@ def total_volume_per_exercise(exercise_name = "Snatch (Barbell)", with_plot = Tr
       plt.cla()
       plt.clf()
    return volume_of_every_set
-#total_volume_per_exercise()
+
 
 
 
 # PR progression over time per given exercise
 def PR_progression(exercise_name = "Snatch (Barbell)", with_plot = True):
-   
+   current_PR = 0
+   current_date = all_workouts[0]['Date']
+   all_PRs = [{"Date":current_date, "PR":current_PR}]
+   for workout in all_workouts:
+      if workout["Exercise Name"] != exercise_name:
+         continue
+      if current_PR <= OneRepMax(workout["Weight"],workout["Reps"]):
+         current_PR = OneRepMax(workout["Weight"],workout["Reps"])
+         current_date = workout["Date"]
+
+         all_PRs.append({"Date":current_date, "PR":current_PR})
+   all_PRs = all_PRs[1:]
+   if with_plot:
+      x_axis = []
+      y_axis = []
+      for i in all_PRs:
+         x_axis.append( dt.datetime.fromisoformat( i["Date"] ))
+         y_axis.append( i["PR"] )
+      plt.style.use('dark_background')
+      plt.rcParams["figure.figsize"] = (12,7)
+      plt.plot(x_axis,y_axis, color="red", linewidth = 2,
+            marker='.', markerfacecolor='blue', markersize=10)
+      plt.title("PR of {} over Time".format(exercise_name))
+      plt.xticks(rotation=45)
+      plt.grid()
+      plt.ylabel("PR")
+      plt.xlabel("Date")
+      plt.show()   
+      
+      plt.cla()
+      plt.clf()
+   return all_PRs
+
+
+
+
 
 # Max consecutive reps 
+def max_consecutive_reps(exercise_name = "Snatch (Barbell)", with_plot = True):
+   most_reps = []
+   current_date = all_workouts[0]['Date']
+   current_most_reps = 0
+   for workout in all_workouts:
+      if workout["Exercise Name"] != exercise_name:
+         continue
+      if workout['Date'] != current_date:
+         most_reps.append({"Date":current_date, "Most Reps":current_most_reps})
+         current_most_reps = 0
+         current_date = workout["Date"]
+      if current_most_reps <= workout["Reps"]:
+         current_most_reps = workout["Reps"]
+   if current_most_reps != 0:
+      most_reps.append({"Date":current_date, "Most Reps":current_most_reps})
+   if with_plot:
+      x_axis = []
+      y_axis = []
+      for i in most_reps:
+         x_axis.append( dt.datetime.fromisoformat( i["Date"] ))
+         y_axis.append( i["Most Reps"] )
+      plt.style.use('dark_background')
+      plt.rcParams["figure.figsize"] = (12,7)
+      plt.plot(x_axis,y_axis, color="red", linewidth = 2,
+            marker='.', markerfacecolor='blue', markersize=10)
+      plt.title("Most Reps of {} per Workout".format(exercise_name))
+      plt.xticks(rotation=45)
+      plt.grid()
+      plt.ylabel("Most Reps")
+      plt.xlabel("Date")
+      plt.show()   
+      
+      plt.cla()
+      plt.clf()
+   return most_reps
+
+
+
+#total_volume()
+#best_set()
+#total_volume_per_exercise()
+#PR_progression()
+#max_consecutive_reps()
+
+
+def main():  
+   while True:
+      plt.close('all')
+      chosen_exercise = all_exercise_names[TerminalMenu(all_exercise_names).show()]
+      all_graphs = ['Total Volume per Workout','Best Set per Exercise per Workout','Total Volume per Exercise per Workout','PR Progression per Exercise','Max Consecutive Reps per Exercise per Workout','EXIT']
+      chosen_graph = all_graphs[TerminalMenu(all_graphs).show()]
+      graph = {
+         'Total Volume per Workout':total_volume,
+         'Best Set per Exercise per Workout':best_set,
+         'Total Volume per Exercise per Workout':total_volume_per_exercise,
+         'PR Progression per Exercise':PR_progression,
+         'Max Consecutive Reps per Exercise per Workout':max_consecutive_reps
+      }
+      if (chosen_graph == 'EXIT'):
+         return
+      if (chosen_graph == 'Total Volume per Workout'):
+         graph[chosen_graph]()
+      else:
+         graph[chosen_graph](chosen_exercise)
+
+
+if __name__ == "__main__":
+    main()
