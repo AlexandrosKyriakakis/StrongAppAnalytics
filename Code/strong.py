@@ -5,7 +5,7 @@ import matplotlib.colors as mcolors
 import datetime as dt
 from simple_term_menu import TerminalMenu
 
-df = pd.read_csv ('../Data/strong.csv')
+df = pd.read_csv ('./Data/strong.csv')
 #Num:    0        1              2           3              4           5        6        7        8        9        10             11
 Keys = ["Date","Workout Name","Duration","Exercise Name","Set Order","Weight","Reps","Distance","Seconds","Notes","Workout Notes","RPE"]
 # User list comprehension to create a list of lists from Dataframe rows
@@ -235,24 +235,22 @@ def max_consecutive_reps(exercise_name = "Snatch (Barbell)", with_plot = True):
 
 
 def main():  
-   while True:
-      plt.close('all')
-      chosen_exercise = all_exercise_names[TerminalMenu(all_exercise_names).show()]
-      all_graphs = ['Total Volume per Workout','Best Set per Exercise per Workout','Total Volume per Exercise per Workout','PR Progression per Exercise','Max Consecutive Reps per Exercise per Workout','EXIT']
-      chosen_graph = all_graphs[TerminalMenu(all_graphs).show()]
-      graph = {
-         'Total Volume per Workout':total_volume,
-         'Best Set per Exercise per Workout':best_set,
-         'Total Volume per Exercise per Workout':total_volume_per_exercise,
-         'PR Progression per Exercise':PR_progression,
-         'Max Consecutive Reps per Exercise per Workout':max_consecutive_reps
-      }
-      if (chosen_graph == 'EXIT'):
-         return
-      if (chosen_graph == 'Total Volume per Workout'):
-         graph[chosen_graph]()
-      else:
-         graph[chosen_graph](chosen_exercise)
+   chosen_exercise = all_exercise_names[TerminalMenu(all_exercise_names).show()]
+   all_graphs = ['Total Volume per Workout','Best Set per Exercise per Workout','Total Volume per Exercise per Workout','PR Progression per Exercise','Max Consecutive Reps per Exercise per Workout','EXIT']
+   chosen_graph = all_graphs[TerminalMenu(all_graphs).show()]
+   graph = {
+      'Total Volume per Workout':total_volume,
+      'Best Set per Exercise per Workout':best_set,
+      'Total Volume per Exercise per Workout':total_volume_per_exercise,
+      'PR Progression per Exercise':PR_progression,
+      'Max Consecutive Reps per Exercise per Workout':max_consecutive_reps
+   }
+   if (chosen_graph == 'EXIT'):
+      return
+   if (chosen_graph == 'Total Volume per Workout'):
+      graph[chosen_graph]()
+   else:
+      graph[chosen_graph](chosen_exercise)
 
 
 if __name__ == "__main__":
