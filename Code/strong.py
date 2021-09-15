@@ -35,6 +35,11 @@ plt.grid()
 plt.ylabel('some numbers')
 plt.show()
 """
+# 1RM
+def OneRepMax(weight,reps):
+   percentage = (100-(reps*2.5))/100
+   return int(weight/percentage)
+
 # Total Volume
 def total_volume():
    volume_of_every_workout = []
@@ -46,7 +51,8 @@ def total_volume():
          volume_of_every_workout.append({'Date':current_date,'Total Volume':total_volume_of_current_workout})
          total_volume_of_current_workout = 0
          current_date = workout['Date']
-
+   if total_volume_of_current_workout != 0:
+      volume_of_every_workout.append({'Date':current_date,'Total Volume':total_volume_of_current_workout})
    x_axis = []
    y_axis = []
    for i in volume_of_every_workout:
@@ -70,10 +76,42 @@ def total_volume():
    plt.cla()
    plt.clf()
 
-total_volume()
+#total_volume()
 # Best set over time per given exercise
-def best_set(exercise_name = "Snatch (Barbel)"):
+def best_set(exercise_name = "Snatch (Barbell)"):
+   best_sets = []
+   current_date = all_workouts[0]['Date']
+   current_best_set = 0
+   for workout in all_workouts:
+      if workout["Exercise Name"] != exercise_name:
+         continue
+      if current_best_set <= OneRepMax(workout['Weight'],workout['Reps']):
+         current_best_set = OneRepMax(workout['Weight'],workout['Reps'])
+      if workout['Date'] != current_date:
+         best_sets.append({"Date":current_date, "1RM":current_best_set})
+         current_best_set = 0
+         current_date = workout["Date"]
+   if current_best_set != 0:
+      best_sets.append({"Date":current_date, "1RM":current_best_set})
+
+   x_axis = []
+   y_axis = []
+   for i in best_sets:
+      x_axis.append( dt.datetime.fromisoformat( i["Date"] ))
+      y_axis.append( i["1RM"] )
+
+   plt.plot(x_axis,y_axis, color="red", linewidth = 2,
+         marker='.', markerfacecolor='blue', markersize=10)
+   plt.title("Best set of {} per Workout".format(exercise_name))
+   plt.xticks(rotation=45)
+   plt.grid()
+   plt.ylabel("Best Set")
+   plt.xlabel("Date")
+   plt.show()   
    
+   plt.cla()
+   plt.clf()
+best_set()
 # Total volume over time per given exercise
 
 # PR progresion over time per given exercise
