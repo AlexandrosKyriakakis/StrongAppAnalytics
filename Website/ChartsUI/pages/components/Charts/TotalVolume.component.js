@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Chart from 'chart.js/auto';
-import totalVolume from '../middleware/totalVolume.middleware';
-export default class LineChart extends Component {
+import totalVolume from '../../middleware/totalVolume.middleware';
+export default class TotalVolume extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -16,8 +16,8 @@ export default class LineChart extends Component {
 		// Typical usage (don't forget to compare props):
 		//console.log("Eimai mesa sthn DID UPDATE")
 		if (this.props.allData !== prevProps.allData) {
-			const data =  JSON.parse(this.props.allData);
-			console.log(data.total_volume);
+			const data =  totalVolume( JSON.parse(this.props.allData) );
+			//console.log(data.total_volume);
 			const ctx = this.chartRef.current.getContext("2d");
 			new Chart(ctx, {
 					type: "bar",
