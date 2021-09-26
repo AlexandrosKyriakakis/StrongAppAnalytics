@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Demo from "./components/Navbar.component.js";
 import CSV from "./components/CSV.component.js";
-import {Content, Container, Footer, Header, Button} from 'rsuite'
+import {Content, Container, Footer, Header, Uploader, InputPicker, Icon} from 'rsuite'
 import 'rsuite/lib/styles/themes/dark/index.less';
 import TotalVolume from './components/Charts/TotalVolume.component.js';
 import BestSets from './components/Charts/BestSets.component.js';
@@ -18,6 +18,9 @@ export default function App() {
   const changeState = () => {
     setShowCSV(!showCSV)
   }
+  const styles = {
+    lineHeight: '200px'
+  };
     return (
       <Container>
         <Header>
@@ -26,7 +29,13 @@ export default function App() {
         </Header>
         <Content>
           {showCSV && (
-            <CSV CSV_to_Index={CSV_to_Index} changeState={changeState}/>
+            <div>
+              <InputPicker data={allData} block />
+              <CSV CSV_to_Index={CSV_to_Index} changeState={changeState}/>
+              <Uploader action="//jsonplaceholder.typicode.com/posts/" draggable>
+                <div style={styles}>Click or Drag files to this area to upload</div>
+              </Uploader>
+            </div>
           )}
           {!showCSV && (
             <div>
@@ -39,7 +48,10 @@ export default function App() {
             )}
 
         </Content>
-        <Footer/>
+        <Footer style={{'display': 'flex', 'justify-content': 'center', 'align-items': 'center'}} >
+           <div>@StronngAppAnalytics </div>
+        </Footer>
       </Container>
     );   
 }
+
