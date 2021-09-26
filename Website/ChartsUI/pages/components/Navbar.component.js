@@ -1,36 +1,12 @@
 import React, { Component } from 'react';
 import {Navbar, Nav, Dropdown, Icon} from 'rsuite'
 import 'rsuite/lib/styles/themes/dark/index.less';
-import CSVReader from 'react-csv-reader';
-
-const handleForce = (data, fileInfo) => console.log(data, fileInfo);
-
-const papaparseOptions = {
-   header: true,
-   dynamicTyping: true,
-   skipEmptyLines: true,
-   transformHeader: header =>
-     header
-       .toLowerCase()
-       .replace(/\W/g, '_')
- };
-
 /**
  * .navbar-brand {
  *   padding: 18px 20px;
  *   display: inline-block;
  * }
- */
- const NavBarInstance = ({ onSelect, activeKey, ...props }) => {
-   return (
-     <Navbar {...props}>
-       <Navbar.Header>
-         <a href="#" className="navbar-brand logo">
-           Strong App Analytics
-         </a>
-       </Navbar.Header>
-       <Navbar.Body>
-         <Nav onSelect={onSelect} activeKey={activeKey}>
+ * <Nav onSelect={onSelect} activeKey={activeKey}>
            <Nav.Item eventKey="1" icon={<Icon icon="home" />}>
               Home
            </Nav.Item>
@@ -42,8 +18,19 @@ const papaparseOptions = {
              <Dropdown.Item eventKey="6">Contact</Dropdown.Item>
            </Dropdown>
          </Nav>
+ */
+ const NavBarInstance = ({ onSelect, activeKey, ...props }) => {
+   return (
+     <Navbar {...props}>
+       <Navbar.Header>
+         <a href="/" className="navbar-brand logo">
+         🏋️ Strong App Analytics
+         </a>
+       </Navbar.Header>
+       <Navbar.Body>
+         
          <Nav pullRight>
-           <Nav.Item icon={<Icon icon="cog" />}>Settings</Nav.Item>
+           <Nav.Item href="https://pay.revolut.com/alexanog30" icon={<Icon icon="heart" />}>Donate</Nav.Item>
          </Nav>
        </Navbar.Body>
      </Navbar>
