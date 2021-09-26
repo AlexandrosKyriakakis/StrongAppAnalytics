@@ -17,5 +17,6 @@
 
 1. Get Exercise name from input form
 2. Pass all the exercises with data to an array like button
-3. Add donate button 
-4. Add github fork button
+3. Convert string to Dates
+4. Add donate button 
+5. Add github fork button
