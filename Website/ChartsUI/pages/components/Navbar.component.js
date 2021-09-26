@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
 import {Navbar, Nav, Dropdown, Icon} from 'rsuite'
 import 'rsuite/lib/styles/themes/dark/index.less';
+import CSVReader from 'react-csv-reader';
+
+const handleForce = (data, fileInfo) => console.log(data, fileInfo);
+
+const papaparseOptions = {
+   header: true,
+   dynamicTyping: true,
+   skipEmptyLines: true,
+   transformHeader: header =>
+     header
+       .toLowerCase()
+       .replace(/\W/g, '_')
+ };
+
 /**
  * .navbar-brand {
  *   padding: 18px 20px;
@@ -12,13 +26,13 @@ import 'rsuite/lib/styles/themes/dark/index.less';
      <Navbar {...props}>
        <Navbar.Header>
          <a href="#" className="navbar-brand logo">
-           RSUITE
+           Strong App Analytics
          </a>
        </Navbar.Header>
        <Navbar.Body>
          <Nav onSelect={onSelect} activeKey={activeKey}>
            <Nav.Item eventKey="1" icon={<Icon icon="home" />}>
-             Home
+              Home
            </Nav.Item>
            <Nav.Item eventKey="2">News</Nav.Item>
            <Nav.Item eventKey="3">Products</Nav.Item>
