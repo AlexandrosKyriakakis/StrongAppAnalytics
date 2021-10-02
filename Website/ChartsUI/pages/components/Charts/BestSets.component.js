@@ -16,12 +16,15 @@ export default class BestSets extends Component {
 	componentDidUpdate(prevProps) {
 		// Typical usage (don't forget to compare props):
 		//console.log("Eimai mesa sthn DID UPDATE")
-		if (this.props.allData !== prevProps.allData) {
-         const data =  best_sets( JSON.parse(this.props.allData) );
+		if (this.props.value !== prevProps.value) {
+			if (my){
+				my.destroy()
+			}
+         const data =  best_sets( JSON.parse(this.props.allData), this.props.value );
          //console.log(data);
 			//console.log(data.total_volume);
 			const ctx = this.chartRef.current.getContext("2d");
-			new Chart(ctx, {
+			const my = new Chart(ctx, {
 					type: "line",
 					data: {
 				labels: data.date,

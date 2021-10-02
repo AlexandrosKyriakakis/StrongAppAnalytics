@@ -15,8 +15,8 @@ export default class VolumePerExercise extends Component {
 	componentDidUpdate(prevProps) {
 		// Typical usage (don't forget to compare props):
 		//console.log("Eimai mesa sthn DID UPDATE")
-		if (this.props.allData !== prevProps.allData) {
-         const data =  volume_per_exercise( JSON.parse(this.props.allData) );
+		if (this.props.value !== prevProps.value) {
+         const data =  volume_per_exercise( JSON.parse(this.props.allData), this.props.value );
          //console.log(data);
 			//console.log(data.total_volume);
 			const ctx = this.chartRef.current.getContext("2d");

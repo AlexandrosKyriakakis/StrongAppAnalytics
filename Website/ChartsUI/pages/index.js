@@ -8,19 +8,24 @@ import BestSets from './components/Charts/BestSets.component.js';
 import VolumePerExercise from './components/Charts/VolumePerExercise.component.js';
 import PRProgression from './components/Charts/PRProgression.component.js';
 import MaxConsecutiveReps from './components/Charts/MaxConsecutiveReps.component.js';
+import AllExercises from './middleware/AllExercises.middleware.js';
 export default function App() {
 
   const [showCSV,setShowCSV] = useState(true);
   const [allData,setAllData] = useState();
+  const [value,setValue] = useState(null);
+  const [showCharts,setShowCharts] = useState(false);
+  const Set_Value = (picked_exercise) =>{
+    setValue(picked_exercise);
+  }
   const CSV_to_Index = (data,fileInfo) => {
     setAllData(data);
+    console.log(AllExercises( data ));
   }
   const changeState = () => {
     setShowCSV(!showCSV)
   }
-  const styles = {
-    lineHeight: '200px'
-  };
+
     return (
       <Container>
         <Header>
@@ -30,23 +35,26 @@ export default function App() {
         <Content>
           {showCSV && (
             <div>
-              <InputPicker data={allData} block />
               <CSV CSV_to_Index={CSV_to_Index} changeState={changeState}/>
-              <Uploader action="//jsonplaceholder.typicode.com/posts/" draggable>
-                <div style={styles}>Click or Drag files to this area to upload</div>
-              </Uploader>
+              
+              
             </div>
           )}
           {!showCSV && (
             <div>
-              <TotalVolume allData={JSON.stringify(allData)}/>
-              <BestSets allData={JSON.stringify(allData)}/>
-              <VolumePerExercise allData={JSON.stringify(allData)}/>
-              <PRProgression allData={JSON.stringify(allData)}/>
-              <MaxConsecutiveReps allData={JSON.stringify(allData)}/>
+              <InputPicker onEntering={()=>{setShowCharts(false)}} onEntered={()=>{setShowCharts(true)}} value={value} onChange={Set_Value} data={AllExercises( allData )} block />
+              
             </div>
             )}
-
+          {showCharts && (
+            <div>
+            <TotalVolume value={value} allData={JSON.stringify(allData)}/>
+            <BestSets value={value} allData={JSON.stringify(allData)}/>
+            <VolumePerExercise value={value} allData={JSON.stringify(allData)}/>
+            <PRProgression value={value} allData={JSON.stringify(allData)}/>
+            <MaxConsecutiveReps value={value} allData={JSON.stringify(allData)}/>
+            </div>
+          )}
         </Content>
         <Footer style={{'display': 'flex', 'justify-content': 'center', 'align-items': 'center'}} >
            <div>@StronngAppAnalytics </div>
