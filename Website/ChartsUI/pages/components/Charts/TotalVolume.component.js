@@ -17,7 +17,6 @@ export default class TotalVolume extends Component {
 		//console.log("Eimai mesa sthn DID UPDATE")
 		if (this.props.allData !== prevProps.allData) {
 			const data =  totalVolume( JSON.parse(this.props.allData) );
-			console.log("EXEI GINEI MALAKIA")
 			//console.log(data.total_volume);
 			const ctx = this.chartRef.current.getContext("2d");
 			new Chart(ctx, {

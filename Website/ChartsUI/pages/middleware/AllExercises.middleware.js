@@ -8,6 +8,7 @@ export default function AllExercises(all_workouts){
    all_exercises = []
    for (let exercise_index in set_of_all_exercises){
       let exercise = set_of_all_exercises[exercise_index]
+      if (exercise === undefined) continue;
       all_exercises.push({label: exercise,value: exercise})
    }
    return all_exercises

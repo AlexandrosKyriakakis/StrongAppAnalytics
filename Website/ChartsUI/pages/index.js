@@ -41,13 +41,13 @@ export default function App() {
           )}
           {!showCSV && (
             <div>
-              <InputPicker onEntering={()=>{setShowCharts(false)}} onEntered={()=>{setShowCharts(true)}} value={value} onChange={Set_Value} data={AllExercises( allData )} block />
+              <InputPicker cleanable={false} onEntering={()=>{setShowCharts(false)}} onEntered={()=>{setShowCharts(true)}} value={value} onChange={Set_Value} data={AllExercises( allData )} block />
+              <TotalVolume allData={JSON.stringify(allData)}/>
               
             </div>
             )}
           {showCharts && (
             <div>
-            <TotalVolume value={value} allData={JSON.stringify(allData)}/>
             <BestSets value={value} allData={JSON.stringify(allData)}/>
             <VolumePerExercise value={value} allData={JSON.stringify(allData)}/>
             <PRProgression value={value} allData={JSON.stringify(allData)}/>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Navbar, Nav, Dropdown, Icon} from 'rsuite'
-import 'rsuite/lib/styles/themes/dark/index.less';
+
 /**
  * .navbar-brand {
  *   padding: 18px 20px;
@@ -24,13 +24,13 @@ import 'rsuite/lib/styles/themes/dark/index.less';
      <Navbar {...props}>
        <Navbar.Header>
          <a href="/" className="navbar-brand logo">
-         🏋️ Strong App Analytics
+         🏋️ <b>Strong App Analytics</b>
          </a>
        </Navbar.Header>
        <Navbar.Body>
          
          <Nav pullRight>
-           <Nav.Item href="https://pay.revolut.com/alexanog30" icon={<Icon icon="heart" />}>Donate</Nav.Item>
+           <Nav.Item href="https://pay.revolut.com/alexanog30" icon={<Icon icon="heart" />}><b>Donate</b></Nav.Item>
          </Nav>
        </Navbar.Body>
      </Navbar>
