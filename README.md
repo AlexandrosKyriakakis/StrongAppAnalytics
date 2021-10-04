@@ -1,6 +1,16 @@
 # Strong App Analytics
 
-## How to use
+## Website
+
+First Release of our Website [https://strongappanalytics.web.app/](https://strongappanalytics.web.app/)
+
+1. Open the [Site](https://strongappanalytics.web.app/)
+2. Upload your Strong App Data
+3. Select the workout to analyse
+4. Enjoy the Charts!
+
+
+## How to use the prototype
 
 1. Open a terminal
 2. run `git clone https://github.com/AlexandrosKyriakakis/StrongAppAnalytics.git`
@@ -12,11 +22,3 @@
 8. Enjoy
 
 ## TODO
-
-### Making a Website
-
-1. Get Exercise name from input form
-2. Pass all the exercises with data to an array like button
-3. Convert string to Dates
-4. Add donate button 
-5. Add github fork button
