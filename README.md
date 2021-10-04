@@ -5,9 +5,14 @@
 First Release of our Website [https://strongappanalytics.web.app/](https://strongappanalytics.web.app/)
 
 1. Open the [Site](https://strongappanalytics.web.app/)
+![](https://github.com/AlexandrosKyriakakis/StrongAppAnalytics/raw/main/img/a.png)
 2. Upload your Strong App Data
+![](https://github.com/AlexandrosKyriakakis/StrongAppAnalytics/raw/main/img/b.png)
+![](https://github.com/AlexandrosKyriakakis/StrongAppAnalytics/raw/main/img/c.png)
 3. Select the workout to analyse
+![](https://github.com/AlexandrosKyriakakis/StrongAppAnalytics/raw/main/img/d.png)
 4. Enjoy the Charts!
+![](https://github.com/AlexandrosKyriakakis/StrongAppAnalytics/raw/main/img/e.png)
 
 
 ## How to use the prototype
