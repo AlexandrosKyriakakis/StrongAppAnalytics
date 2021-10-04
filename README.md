@@ -27,3 +27,8 @@ First Release of our Website [https://strongappanalytics.web.app/](https://stron
 8. Enjoy
 
 ## TODO
+
+1. Make the dates look better
+2. Add commentary to the Charts
+3. Add more useful Charts 
+4. Publish the Website to the Strong App Community
