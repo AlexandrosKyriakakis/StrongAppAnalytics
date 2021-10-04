@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Chart from 'chart.js/auto';
-import PR_progression from '../../middleware/PRProgression.middleware';
+import PR_progression from '../../../middleware/PRProgression.middleware';
 export default class PRProgression extends Component {
 	constructor(props) {
 		super(props);

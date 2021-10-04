@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Chart from 'chart.js/auto';
-import max_consecutive_reps from '../../middleware/MaxConsecutiveReps.middleware';
+import max_consecutive_reps from '../../../middleware/MaxConsecutiveReps.middleware';
 
 export default class MaxConsecutiveReps extends Component {
 	constructor(props) {

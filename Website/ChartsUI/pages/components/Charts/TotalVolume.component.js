@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Chart from 'chart.js/auto';
-import totalVolume from '../../middleware/totalVolume.middleware';
+import totalVolume from '../../../middleware/totalVolume.middleware';
 export default class TotalVolume extends Component {
 	constructor(props) {
 		super(props);

@@ -10,8 +10,8 @@ export default function max_consecutive_reps(all_workouts, exercise_name = "Snat
          continue;
       }
       if (workout['date'] != current_date){
-         most_reps.date.push(current_date)
-         most_reps.most_reps.push(current_most_reps)
+         most_reps['date'].push(current_date)
+         most_reps['most_reps'].push(current_most_reps)
          current_most_reps = 0
          current_date = workout["date"]
       }
@@ -20,8 +20,8 @@ export default function max_consecutive_reps(all_workouts, exercise_name = "Snat
       }
    }
    if (current_most_reps != 0){
-      most_reps.date.push(current_date)
-      most_reps.most_reps.push(current_most_reps)
+      most_reps['date'].push(current_date)
+      most_reps['most_reps'].push(current_most_reps)
    }
 
    return most_reps

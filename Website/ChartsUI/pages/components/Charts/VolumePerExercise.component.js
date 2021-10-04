@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Chart from 'chart.js/auto';
-import volume_per_exercise from '../../middleware/VolumePerExercise.middleware';
+import volume_per_exercise from '../../../middleware/VolumePerExercise.middleware';
 export default class VolumePerExercise extends Component {
 	constructor(props) {
 		super(props);

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import CSVReader from 'react-csv-reader';
 import {Content, Container, Footer, Header, Uploader, InputPicker, Icon} from 'rsuite'
-import import_data from '../middleware/ImportData.middleware';
+import import_data from '../../middleware/ImportData.middleware';
 import { readString } from 'react-papaparse'
-//import totalVolume from '../middleware/totalVolume.middleware';
 function previewFile(file, callback) {
   const reader = new FileReader();
   reader.onloadend = () => {

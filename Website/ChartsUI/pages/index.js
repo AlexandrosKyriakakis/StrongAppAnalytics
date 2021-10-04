@@ -8,7 +8,7 @@ import BestSets from './components/Charts/BestSets.component.js';
 import VolumePerExercise from './components/Charts/VolumePerExercise.component.js';
 import PRProgression from './components/Charts/PRProgression.component.js';
 import MaxConsecutiveReps from './components/Charts/MaxConsecutiveReps.component.js';
-import AllExercises from './middleware/AllExercises.middleware.js';
+import AllExercises from '.././middleware/AllExercises.middleware.js';
 export default function App() {
 
   const [showCSV,setShowCSV] = useState(true);

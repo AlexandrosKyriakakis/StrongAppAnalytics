@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Navbar, Nav, Dropdown, Icon} from 'rsuite'
+import {Navbar, Nav, Dropdown, Icon, Button} from 'rsuite'
+import NavItem from 'rsuite/lib/Nav/NavItem';
 
 /**
  * .navbar-brand {
@@ -22,17 +23,15 @@ import {Navbar, Nav, Dropdown, Icon} from 'rsuite'
  const NavBarInstance = ({ onSelect, activeKey, ...props }) => {
    return (
      <Navbar {...props}>
-       <Navbar.Header>
-         <a href="/" className="navbar-brand logo">
+       <Nav pullLeft>
+         <Nav.Item href="/" >
          🏋️ <b>Strong App Analytics</b>
-         </a>
-       </Navbar.Header>
-       <Navbar.Body>
-         
+         </Nav.Item>
+         </Nav>
          <Nav pullRight>
            <Nav.Item href="https://pay.revolut.com/alexanog30" icon={<Icon icon="heart" />}><b>Donate</b></Nav.Item>
          </Nav>
-       </Navbar.Body>
+
      </Navbar>
    );
  };

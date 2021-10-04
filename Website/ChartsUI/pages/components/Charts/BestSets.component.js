@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Chart from 'chart.js/auto';
-import best_sets from '../../middleware/best_sets.middleware';
+import best_sets from '../../../middleware/best_sets.middleware';
 
 export default class BestSets extends Component {
 	constructor(props) {
