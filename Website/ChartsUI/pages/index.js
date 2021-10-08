@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Demo from "./components/Navbar.component.js";
+import NavBar from "./components/Navbar.component.js";
 import CSV from "./components/CSV.component.js";
 import {Content, Container, Footer, Header, Uploader, InputPicker, Icon} from 'rsuite'
 import 'rsuite/lib/styles/themes/dark/index.less';
@@ -25,18 +25,18 @@ export default function App() {
   const changeState = () => {
     setShowCSV(!showCSV)
   }
+
+
     return (
       <Container>
         <Header>
 
-        <Demo/>
+        <NavBar/>
         </Header>
         <Content>
           {showCSV && (
             <div>
               <CSV CSV_to_Index={CSV_to_Index} changeState={changeState}/>
-              
-              
             </div>
           )}
           {!showCSV && (

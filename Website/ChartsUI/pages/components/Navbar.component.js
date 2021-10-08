@@ -36,7 +36,7 @@ import NavItem from 'rsuite/lib/Nav/NavItem';
    );
  };
  
- export default class Demo extends Component {
+ export default class NavBar extends Component {
    constructor(props) {
      super(props);
      this.handleSelect = this.handleSelect.bind(this);
