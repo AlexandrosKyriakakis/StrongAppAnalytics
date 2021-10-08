@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Content, Container, Footer, Header, Uploader, InputPicker, Icon} from 'rsuite'
 import 'rsuite/lib/styles/themes/dark/index.less';
 import Chart from 'chart.js/auto';
+import 'chartjs-adapter-date-fns';
 import best_sets from '../../../middleware/best_sets.middleware';
 
 export default class BestSets extends Component {
@@ -22,7 +23,9 @@ export default class BestSets extends Component {
 			if (my){
 				my.destroy()
 			}
-         const data =  best_sets( JSON.parse(this.props.allData), this.props.value );
+			let beforeData = JSON.parse(this.props.allData)
+			beforeData.pop()
+         const data =  best_sets( beforeData, this.props.value );
          //console.log(data);
 			//console.log(data.total_volume);
 			const ctx = this.chartRef.current.getContext("2d");
@@ -39,6 +42,14 @@ export default class BestSets extends Component {
 				}
 				]
 			},
+			options: {
+				scales: {
+					x: {
+						type: 'time',
+					 },
+					
+					},
+		  	}
 				});
 			
 		}
@@ -69,7 +80,7 @@ export default class BestSets extends Component {
 			return (
 				<div>
 				<Header style={headerStyles}>
-				Best Sets of {this.props.value} over time
+				Best Sets at every workout of {this.props.value} over time
 				</Header>
 				<Content style={ContentStyles}>
 
@@ -80,7 +91,7 @@ export default class BestSets extends Component {
 				/>
 
 				<p style={{paddingLeft:'2%',paddingRight:'2%'}}>
-					On this Chart we watch the total weight lifted in a workout on {this.props.value} over time.
+					On this Chart we watch the maximum weight lifted (1RM) in a workout on {this.props.value} over time.
 				</p>
 
 				</Content>

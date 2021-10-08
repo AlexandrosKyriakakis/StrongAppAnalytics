@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Navbar, Nav, Dropdown, Icon, Button} from 'rsuite'
+import {Navbar, Nav, Dropdown, Icon, Button, Affix} from 'rsuite'
 import NavItem from 'rsuite/lib/Nav/NavItem';
 
 /**
@@ -22,7 +22,7 @@ import NavItem from 'rsuite/lib/Nav/NavItem';
  */
  const NavBarInstance = ({ onSelect, activeKey, ...props }) => {
    return (
-     <Navbar {...props}>
+     <Navbar {...props} >
        <Nav pullLeft>
          <Nav.Item href="/" >
          🏋️ <b>Strong App Analytics</b>
@@ -54,8 +54,9 @@ import NavItem from 'rsuite/lib/Nav/NavItem';
      const { activeKey } = this.state;
      return (
        <div className="nav-wrapper">
+         <Affix>
          <NavBarInstance activeKey={activeKey} onSelect={this.handleSelect} />
-
+         </Affix>
        </div>
      );
    }

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import NavBar from "./components/Navbar.component.js";
 import CSV from "./components/CSV.component.js";
-import {Content, Container, Footer, Header, Uploader, InputPicker, Icon} from 'rsuite'
+import {Content, Container, Footer, Header, Uploader, InputPicker, Icon, Affix} from 'rsuite'
 import 'rsuite/lib/styles/themes/dark/index.less';
 import TotalVolume from './components/Charts/TotalVolume.component.js';
 import BestSets from './components/Charts/BestSets.component.js';
@@ -40,7 +40,9 @@ export default function App() {
           )}
           {!showCSV && (
             <div>
-              
+              <Affix top={55}>
+              <Container>
+
               <InputPicker 
               size='lg'
               placeholder={<Header style={{ fontSize: '19px', color: '#198ad8'}}>
@@ -54,6 +56,8 @@ export default function App() {
               data={AllExercises( allData )} 
               block
               />
+              </Container>
+              </Affix>
               <TotalVolume allData={JSON.stringify(allData)}/>
               
             </div>

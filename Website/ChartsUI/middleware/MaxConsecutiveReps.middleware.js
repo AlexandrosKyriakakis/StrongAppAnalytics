@@ -9,14 +9,14 @@ export default function max_consecutive_reps(all_workouts, exercise_name = "Snat
       if (workout["exercise_name"] != exercise_name){
          continue;
       }
+      if (current_most_reps <= workout['reps']){
+         current_most_reps = workout["reps"]
+      }
       if (workout['date'] != current_date){
          most_reps['date'].push(current_date)
          most_reps['most_reps'].push(current_most_reps)
          current_most_reps = 0
          current_date = workout["date"]
-      }
-      if (current_most_reps <= workout['reps']){
-         current_most_reps = workout["reps"]
       }
    }
    if (current_most_reps != 0){

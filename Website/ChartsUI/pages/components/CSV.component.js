@@ -26,6 +26,7 @@ export default class CSV extends Component {
 	}
 	render() {
     const styles = {
+      fontSize: '1.3vw',
       lineHeight: '200px',
       opacity: 0.5,
     };

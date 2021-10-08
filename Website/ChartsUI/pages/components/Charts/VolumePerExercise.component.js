@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Content, Container, Footer, Header, Uploader, InputPicker, Icon} from 'rsuite'
 import 'rsuite/lib/styles/themes/dark/index.less';
 import Chart from 'chart.js/auto';
+import 'chartjs-adapter-date-fns';
 import volume_per_exercise from '../../../middleware/VolumePerExercise.middleware';
 export default class VolumePerExercise extends Component {
 	constructor(props) {
@@ -18,7 +19,9 @@ export default class VolumePerExercise extends Component {
 		// Typical usage (don't forget to compare props):
 		//console.log("Eimai mesa sthn DID UPDATE")
 		if (this.props.value !== prevProps.value) {
-         const data =  volume_per_exercise( JSON.parse(this.props.allData), this.props.value );
+			let beforeData = JSON.parse(this.props.allData)
+			beforeData.pop()
+         const data =  volume_per_exercise( beforeData, this.props.value );
          //console.log(data);
 			//console.log(data.total_volume);
 			const ctx = this.chartRef.current.getContext("2d");
@@ -35,6 +38,14 @@ export default class VolumePerExercise extends Component {
 				}
 				]
 			},
+			options: {
+				scales: {
+					x: {
+						type: 'time',
+					 },
+					
+					},
+		  	}
 				});
 			
 		}
