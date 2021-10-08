@@ -29,6 +29,7 @@ import NavItem from 'rsuite/lib/Nav/NavItem';
          </Nav.Item>
          </Nav>
          <Nav pullRight>
+           <Nav.Item href="https://github.com/AlexandrosKyriakakis/StrongAppAnalytics" icon={<Icon icon="github" />}><b>Github</b></Nav.Item>
            <Nav.Item href="https://pay.revolut.com/alexanog30" icon={<Icon icon="heart" />}><b>Donate</b></Nav.Item>
          </Nav>
 

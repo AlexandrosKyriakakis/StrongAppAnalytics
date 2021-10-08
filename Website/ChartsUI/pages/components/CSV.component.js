@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Content, Container, Footer, Header, Uploader, InputPicker, Icon} from 'rsuite'
+import {Content, FlexboxGrid, Container, Footer, Header, Uploader, InputPicker, Icon} from 'rsuite'
 import import_data from '../../middleware/ImportData.middleware';
 import { readString } from 'react-papaparse'
 function previewFile(file, callback) {
@@ -42,9 +42,17 @@ export default class CSV extends Component {
     }
     const ContentStyles = {
       fontSize: '1.6vw',
-      textAlign: 'left',
       marginBottom: '3%',
-      backgroundColor : '#232222'
+      backgroundColor : '#232222',
+      paddingTop: '1%',
+      paddingBottom: '2%',
+      textAlign: 'center',
+    }
+    const IMGStyles = {
+      paddingTop: '2%',
+      width: '18vw',
+      height: '34vw',
+      objectFit: 'contain',
     }
 		return (
 
@@ -75,8 +83,12 @@ export default class CSV extends Component {
         </Header>
         <div style={styles}>Click or Drag files to this area to upload</div>
         <Content style={ContentStyles}>
-        1. Get your data from Strong App
-        <img src='' />
+        How to get your data from Strong App
+        <FlexboxGrid justify="space-around">
+          <FlexboxGrid.Item> 1️ <img style={IMGStyles} src='https://github.com/AlexandrosKyriakakis/StrongAppAnalytics/raw/main/img/g.jpeg'/></FlexboxGrid.Item>
+          <FlexboxGrid.Item> 2️ <img style={IMGStyles} src='https://github.com/AlexandrosKyriakakis/StrongAppAnalytics/raw/main/img/f.jpeg'/></FlexboxGrid.Item>
+
+        </FlexboxGrid>
         </Content>
       </div>        
     </Uploader>

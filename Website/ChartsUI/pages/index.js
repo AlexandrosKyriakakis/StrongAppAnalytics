@@ -25,8 +25,7 @@ export default function App() {
   const changeState = () => {
     setShowCSV(!showCSV)
   }
-
-
+  
     return (
       <Container>
         <Header>
@@ -41,7 +40,20 @@ export default function App() {
           )}
           {!showCSV && (
             <div>
-              <InputPicker cleanable={false} onEntering={()=>{setShowCharts(false)}} onEntered={()=>{setShowCharts(true)}} value={value} onChange={Set_Value} data={AllExercises( allData )} block />
+              
+              <InputPicker 
+              size='lg'
+              placeholder={<Header style={{ fontSize: '19px', color: '#198ad8'}}>
+                           Select Exercise
+                            </Header>}
+              cleanable={false} 
+              onEntering={()=>{setShowCharts(false)}} 
+              onEntered={()=>{setShowCharts(true)}} 
+              value={value} 
+              onChange={Set_Value} 
+              data={AllExercises( allData )} 
+              block
+              />
               <TotalVolume allData={JSON.stringify(allData)}/>
               
             </div>

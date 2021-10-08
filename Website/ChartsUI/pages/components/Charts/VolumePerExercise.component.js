@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {Content, Container, Footer, Header, Uploader, InputPicker, Icon} from 'rsuite'
+import 'rsuite/lib/styles/themes/dark/index.less';
 import Chart from 'chart.js/auto';
 import volume_per_exercise from '../../../middleware/VolumePerExercise.middleware';
 export default class VolumePerExercise extends Component {
@@ -44,14 +46,40 @@ export default class VolumePerExercise extends Component {
 		//console.log(this.props.allData);
 	}
 	render() {
+		const headerStyles = {
+			fontSize: '2vw',
+			textAlign: 'center',
+			marginTop: '3%',
+		 }
+		 const ContentStyles = {
+			fontSize: '1.6vw',
+			textAlign: 'left',
+			marginBottom: '3%',
+			backgroundColor : '#14161b',
+			paddingTop: '1%',
+			paddingBottom: '2%',
+			textAlign: 'left',
+		 }
 		//console.log(this.props.allData);
 			// Render real UI ...
 			return (
 				<div>
+				<Header style={headerStyles}>
+				Total Volume on {this.props.value} over time.
+				</Header>
+				<Content style={ContentStyles}>
+
 				<canvas
+				style={{paddingBottom:'2%'}}
 				id="myChart"
 				ref={this.chartRef}
 				/>
+
+				<p style={{paddingLeft:'2%',paddingRight:'2%'}}>
+					On this Chart we watch the total weight lifted on {this.props.value} over time. 
+				</p>
+
+				</Content>
 			</div>
 			)
 		
